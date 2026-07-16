@@ -10,7 +10,9 @@ try:
     req = Request(
         URL,
         headers={
-            "User-Agent": "Mozilla/5.0 (GitHub Actions)"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/139.0 Safari/537.36",
+            "Accept": "*/*",
+            "Referer": "https://vrchat.com/"
         }
     )
 
