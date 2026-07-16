@@ -15,14 +15,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
-          python-version: "3.x"
-
+          python-version: "3.13"
+      
       - name: Fetch and update summary
-        run: python fetch.py
+        run: |
+          python --version
+          python fetch.py
 
       - name: Commit changes
         run: |
