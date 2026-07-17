@@ -30,8 +30,8 @@ try:
 
     lines.append(line)
 
-    # 最新5行だけ残す
-    lines = lines[-5:]
+    # 最新105120行だけ残す
+    lines = lines[-105120:]
 
     SUMMARY_FILE.write_text(
         "\n".join(lines) + "\n",
