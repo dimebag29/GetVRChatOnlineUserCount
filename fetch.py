@@ -2,6 +2,7 @@ import time
 import traceback
 from pathlib import Path
 from urllib.request import Request, urlopen
+from urllib.error import HTTPError, URLError
 
 URL = "https://api.vrchat.cloud/api/1/visits"
 SUMMARY_FILE = Path("summary.txt")
@@ -14,10 +15,20 @@ try:
         },
     )
 
-    with urlopen(req, timeout=10) as response:
-        text = response.read().decode("utf-8").strip()
+    try:
+        with urlopen(req, timeout=10) as response:
+            text = response.read().decode("utf-8").strip()
+    except HTTPError as e:
+        raise RuntimeError(f"HTTP Error {e.code}") from e
+    except URLError as e:
+        raise RuntimeError(f"URL Error: {e.reason}") from e
 
-    line = f"{int(time.time())}_{text}"
+    try:
+        visits = int(text)
+    except ValueError:
+        raise RuntimeError(f"Response is not an integer: {text!r}")
+
+    line = f"{int(time.time())}_{visits}"
 
     lines = []
 
