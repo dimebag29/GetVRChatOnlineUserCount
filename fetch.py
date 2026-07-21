@@ -38,7 +38,7 @@ if SUMMARY_FILE.exists():
 lines.append(line)
 
 # 最新157680行だけ残す 10分に1回 x 24h x 365days x 3years
-lines = lines[-157680:]
+#lines = lines[-157680:]
 
 SUMMARY_FILE.write_text(
     "\n".join(lines) + "\n",
